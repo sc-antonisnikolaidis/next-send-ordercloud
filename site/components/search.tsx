@@ -28,6 +28,7 @@ import {
   useSearchMeta,
 } from '@lib/search'
 import ErrorMessage from './ui/ErrorMessage'
+import Script from 'next/script'
 
 export default function Search({ categories, brands }: SearchPropsType) {
   const [activeFilter, setActiveFilter] = useState('')
@@ -435,6 +436,7 @@ export default function Search({ categories, brands }: SearchPropsType) {
           </div>
         </div>
       </div>
+      <Script src="/scripts/searchPage.js" />
     </Container>
   )
 }

@@ -1,0 +1,1 @@
+mootrack('SEARCH_PAGE_VISITED');
