@@ -115,7 +115,7 @@ const Layout: React.FC<Props> = ({
   }))
   navBarlinks.push({
     label: 'Moosend page',
-    href: 'https://sitecoredemo.m-pages.com/promotions',
+    href: 'https://sitecoredemo.m-pages.com/top-promotions',
   })
 
   return (
