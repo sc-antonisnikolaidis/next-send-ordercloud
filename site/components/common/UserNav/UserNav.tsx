@@ -15,12 +15,15 @@ import {
 } from '@components/ui'
 
 import type { LineItem } from '@commerce/types/cart'
+import { useAuth0 } from '@auth0/auth0-react'
 
 const countItem = (count: number, item: LineItem) => count + item.quantity
 
 const UserNav: React.FC<{
   className?: string
 }> = ({ className }) => {
+  const { loginWithRedirect, logout, isAuthenticated, user, isLoading } =
+    useAuth0()
   const { data } = useCart()
   const { data: isCustomerLoggedIn } = useCustomer()
   const {
@@ -35,6 +38,8 @@ const UserNav: React.FC<{
   const DropdownTrigger = isCustomerLoggedIn
     ? DropdownTriggerInst
     : React.Fragment
+
+  console.log(user)
 
   return (
     <nav className={cn(s.root, className)}>
@@ -55,6 +60,29 @@ const UserNav: React.FC<{
                 <span className={s.bagCount}>{itemsCount}</span>
               )}
             </Button>
+            {isLoading ? null : isAuthenticated ? (
+              <Button
+                className={s.item}
+                variant="naked"
+                onClick={() => {
+                  logout({ returnTo: window.location.origin })
+                }}
+                aria-label={'Logout'}
+              >
+                Logout
+              </Button>
+            ) : (
+              <Button
+                className={s.item}
+                variant="naked"
+                onClick={() => {
+                  loginWithRedirect()
+                }}
+                aria-label={'Login'}
+              >
+                Login
+              </Button>
+            )}
           </li>
         )}
         {process.env.COMMERCE_WISHLIST_ENABLED && (
