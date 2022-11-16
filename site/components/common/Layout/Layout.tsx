@@ -113,10 +113,13 @@ const Layout: React.FC<Props> = ({
     label: c.name,
     href: `/search/${c.slug}`,
   }))
-  navBarlinks.push({
-    label: 'Promotions',
-    href: 'https://sitecoredemo.m-pages.com/promotions',
-  })
+  navBarlinks.push(
+    {
+      label: 'Promotions',
+      href: 'https://sitecoredemo.m-pages.com/promotions',
+    },
+    { label: 'Offers', href: '/offers' }
+  )
 
   return (
     <CommerceProvider locale={locale}>
