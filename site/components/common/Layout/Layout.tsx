@@ -113,6 +113,10 @@ const Layout: React.FC<Props> = ({
     label: c.name,
     href: `/search/${c.slug}`,
   }))
+  navBarlinks.push({
+    label: 'Moosend page',
+    href: 'https://sitecoredemo.m-pages.com/promotions',
+  })
 
   return (
     <CommerceProvider locale={locale}>
