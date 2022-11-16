@@ -12,6 +12,7 @@ import {
   Dropdown,
   DropdownTrigger as DropdownTriggerInst,
   Button,
+  Text,
 } from '@components/ui'
 
 import type { LineItem } from '@commerce/types/cart'
@@ -46,6 +47,7 @@ const UserNav: React.FC<{
       <ul className={s.list}>
         {process.env.COMMERCE_CART_ENABLED && (
           <li className={s.item}>
+            <Text>{user?.name || user?.email}</Text>
             <Button
               className={s.item}
               variant="naked"
