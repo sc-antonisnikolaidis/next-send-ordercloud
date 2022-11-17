@@ -14,6 +14,16 @@ module.exports = withCommerceConfig({
     locales: ['en-US', 'es'],
     defaultLocale: 'en-US',
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 's.gravatar.com',
+        port: '',
+        pathname: '/**',
+      },
+    ],
+  },
   rewrites() {
     return [
       (isBC || isShopify || isSwell || isVendure || isSaleor) && {

@@ -1,20 +1,20 @@
-// import * as dotenv from 'dotenv' // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
-// dotenv.config()
-
 import '@assets/main.css'
 import '@assets/chrome-bug.css'
 import 'keen-slider/keen-slider.min.css'
 
-import { FC, ReactNode, useEffect } from 'react'
+import { FC, ReactNode, useEffect, useState } from 'react'
 import type { AppProps } from 'next/app'
 import { Head } from '@components/common'
 import { ManagedUIContext } from '@components/ui/context'
 import Script from 'next/script'
-import { Auth0Provider } from '@auth0/auth0-react'
+import { Auth0Provider, useAuth0 } from '@auth0/auth0-react'
+import { useRouter } from 'next/router'
+import Page from '@components/common/Page'
 
 const Noop: FC<{ children?: ReactNode }> = ({ children }) => <>{children}</>
 
 export default function MyApp({ Component, pageProps }: AppProps) {
+  const router = useRouter()
   const Layout = (Component as any).Layout || Noop
 
   useEffect(() => {
@@ -26,17 +26,19 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       <Head />
 
       {/* LOAD SITECORE SEND TRACKER from public folder (load once for all pages) */}
-      <Script src="/scripts/mootrack.js" />
+      <Script src="/scripts/mootrack.js" strategy="beforeInteractive" />
 
       <Auth0Provider
         domain={process.env.NEXT_PUBLIC_AUTH0_DOMAIN || ''}
         clientId={process.env.NEXT_PUBLIC_AUTH0_CLIENT_ID || ''}
-        redirectUri={process.env.NEXT_PUBLIC_BASE_URL}
+        redirectUri={process.env.NEXT_PUBLIC_BASE_URL + router.asPath}
       >
         <ManagedUIContext>
-          <Layout pageProps={pageProps}>
-            <Component {...pageProps} />
-          </Layout>
+          <Page>
+            <Layout pageProps={pageProps}>
+              <Component {...pageProps} />
+            </Layout>
+          </Page>
         </ManagedUIContext>
       </Auth0Provider>
     </>

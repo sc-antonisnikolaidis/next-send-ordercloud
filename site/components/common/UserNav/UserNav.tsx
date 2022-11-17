@@ -40,8 +40,6 @@ const UserNav: React.FC<{
     ? DropdownTriggerInst
     : React.Fragment
 
-  console.log(user)
-
   return (
     <nav className={cn(s.root, className)}>
       <ul className={s.list}>
