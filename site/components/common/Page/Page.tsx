@@ -8,13 +8,12 @@ interface Props {
 
 const Page: FC<Props> = ({ children }) => {
   const { user } = useAuth0()
-  const router = useRouter()
 
   useEffect(() => {
     if (user?.email) {
       // @ts-ignore
       window.mootrack('identify', user.email)
-      console.log('*** Identify')
+      console.log('*** Moosend just identified user')
     }
   }, [user])
 
