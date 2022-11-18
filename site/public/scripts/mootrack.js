@@ -18,6 +18,6 @@
       : window.addEventListener('load', d.bind(this, o), !1);
 })(window, document, 'script', '//cdn.stat-track.com/statics/moosend-tracking.min.js', 'mootrack');
 //tracker has to be initialized otherwise it will generate warnings and wont sendtracking events
-mootrack('init', 'f1d5710e-defb-47ae-bcf4-0bd80243bb52');
+mootrack('init', '9b9d7c4d-c56f-474a-b906-22dcc0fe2b87');
 // track a view of the current page
 mootrack('trackPageView');
