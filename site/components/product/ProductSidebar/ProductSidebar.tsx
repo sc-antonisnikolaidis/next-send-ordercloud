@@ -59,7 +59,7 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
         1,
         product.price.value,
         product.name,
-        product.images[0],
+        product.images[0].url,
         product.price.currencyCode
       )
       setSidebarView('CART_VIEW')
