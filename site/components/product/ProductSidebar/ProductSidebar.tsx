@@ -37,6 +37,9 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
         variantId: String(variant ? variant.id : product.variants[0]?.id),
       })
 
+      const extraProps = {
+        currencyCode: product.price.currencyCode,
+      }
       //@ts-ignore
       console.log(window.mootrack)
       console.log(
@@ -48,7 +51,7 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
         product.price.value,
         product.name,
         product.images[0],
-        product.price.currencyCode
+        extraProps
       )
       //@ts-ignore
       window.mootrack(
@@ -60,7 +63,7 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
         product.price.value,
         product.name,
         product.images[0].url,
-        product.price.currencyCode
+        extraProps
       )
       setSidebarView('CART_VIEW')
       openSidebar()
