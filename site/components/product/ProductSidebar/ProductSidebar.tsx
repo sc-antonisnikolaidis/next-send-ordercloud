@@ -36,6 +36,20 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
         productId: String(product.id),
         variantId: String(variant ? variant.id : product.variants[0]?.id),
       })
+
+      //@ts-ignore
+      console.log(window.mootrack)
+      console.log(
+        'trackAddToOrder',
+        product.id,
+        product.price.value,
+        `${process.env.NEXT_PUBLIC_BASE_URL}/product/${product.slug}`,
+        1,
+        product.price.value,
+        product.name,
+        product.images[0],
+        product.price.currencyCode
+      )
       //@ts-ignore
       window.mootrack(
         'trackAddToOrder',
